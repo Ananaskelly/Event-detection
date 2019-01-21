@@ -52,6 +52,7 @@ def extract_log_mel_feats(set_type, path_to_csv, path_to_files, out_path, sr, ff
                 'feature': log_mel_spec,
                 'label_id': label_to_id[label]
             })
+        return label_to_id
     else:
         for i, file_name in tqdm(enumerate(os.listdir(path_to_files))):
             wav_data, sr = load_wav(os.path.join(path_to_files, file_name), sr=sr)
