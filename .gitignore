@@ -177,3 +177,5 @@ fabric.properties
 ./data/**/*.wav
 ./data/*.pickle
 ./data/*.csv
+
+.ipynb_checkpoints/
