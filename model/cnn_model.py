@@ -19,6 +19,11 @@ class CNNModel:
         x = BatchNormalization()(x)
         x = MaxPooling2D(pool_size=(2, 2))(x)
         x = Dropout(rate=0.3)(x)
+
+        x = Conv2D(filters=64, kernel_size=(3, 3), strides=(1, 1), activation='relu')(x)
+        x = BatchNormalization()(x)
+        x = MaxPooling2D(pool_size=(2, 2))(x)
+        x = Dropout(rate=0.3)(x)
     
         x = Flatten()(x)
         out = Dense(units=self.config.n_classes, activation='softmax')(x)

@@ -52,12 +52,13 @@ def extract_log_mel_feats(set_type, path_to_csv, path_to_files, out_path, sr, ff
                 'feature': log_mel_spec,
                 'label_id': label_to_id[label]
             })
+        pickle.dump(feats, open(out_path, 'wb'))    
         return label_to_id
     else:
         for i, file_name in tqdm(enumerate(os.listdir(path_to_files))):
             wav_data, sr = load_wav(os.path.join(path_to_files, file_name), sr=sr)
             if len(wav_data) == 0:
-                print('Empty file:', file_name)
+                # print('Empty file:', file_name)
                 wav_data = np.zeros(sr)
             mel_spec = melspectrogram(wav_data, n_fft=fft_size, n_mels=n_mels, fmax=sr // 2)
             log_mel_spec = power_to_db(mel_spec, ref=np.max)
